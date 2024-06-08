@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Prestaciones Laborales</title>
+    <style>
+        /* Estilos existentes */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/vector-gratis/fondo-borroso_1034-792.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            color: #fff;
+            margin-right: 20px;
+            padding-top: 30px;
+        }
+ 
+        .result {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+   
+        /* Nuevos estilos para los resultados */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>  
+    <div class="container containerResult">
+        <div class="result">
+            <h1>Resultados:</h1>
+
+            <!--Datos del trabajador--> 
+            <table>
+                <tr><th colspan="2">DATOS DEL TRABAJADOR</th></tr>                
+
+                <tr><td>Nombre y apellido</td><td>{{ resultados['nombreApellido'] }}</td></tr>
+                <tr><td>Nombre de la empresa</td><td>{{ resultados['nombreEmpresa'] }}</td></tr>
+                <tr><td>Fecha inicio de labores</td><td>{{ resultados['fechaInicio'] }}</td></tr>
+                <tr><td>Fecha Fin periodo</td><td>{{ resultados['fechaFin'] }}</td></tr>
+                <tr><td>Cantidad de días laborados</td><td>{{ resultados['diasLaborados'] }} días</td></tr>           
+            </table>
+            
+
+            <!--Datos del Sueldo--> 
+            <table>
+                <tr><th colspan="2">DATOS DEL SALARIO</th></tr>
+                       
+                <tr><td>Salario Actual</td><td>GTQ {{ resultados['salario'] }}</td></tr>
+                <tr><td>Salario Promedio</td><td>GTQ {{ resultados['salarioPromedio'] }}</td></tr>
+            </table> 
+
+
+            <!--RESPUESTAS-->  
+            <table>  
+                <tr><th colspan="2">PRESTACIONES CALCULADAS</th></tr>           
+                
+                {% if resultados['bono14'] %}
+                <tr><td>Bono 14</td><td>GTQ {{ resultados['bono14'] }}</td></tr>
+                {% endif %}
+
+                {% if resultados['aguinaldo'] %}
+                <tr><td>Aguinaldo</td><td>GTQ {{ resultados['aguinaldo'] }}</td></tr>
+                {% endif %}
+
+                {% if resultados['vacaciones'] %}
+                <tr><td>Vacaciones</td><td>GTQ {{ resultados['vacaciones'] }}</td></tr>
+                {% endif %}
+
+                {% if resultados['indemnizacion'] %}
+                <tr><td>Indemnización</td><td>GTQ {{ resultados['tiempo'] }}</td></tr>
+                <tr><td>TOTAL INDEMNIZACIÓN</td><td>GTQ {{ resultados['indemnizacion'] }}</td></tr>               
+                {% endif %}               
+            </table>
+
+
+            <a href="/" class="btn">Nuevo calculo</a>
+        </div>
+    </div>
+</body>
+</html>
